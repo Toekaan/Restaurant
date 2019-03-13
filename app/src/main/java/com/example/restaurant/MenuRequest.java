@@ -65,12 +65,13 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
 
                 // only get items in specified category
                 if (temp.getString("category").equals(category)) {
-                    Log.d("Hewwo :3", temp.getString("category"));
+                    Log.d("MENU REQUEST CATEGORY LOOP:", temp.getString("category"));
                     item.setCategory(temp.getString("category"));
                     item.setDescription(temp.getString("description"));
                     item.setImageUrl(temp.getString("image_url"));
                     item.setName(temp.getString("name"));
                     item.setPrice(temp.getLong("price"));
+                    menuList.add(item);
                 }
 
 
@@ -90,7 +91,7 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
                 item.setPrice(temp.getLong("price"));*/
 
                 // add menu item to list
-                menuList.add(item);
+
             }
         }
         catch (JSONException e) {

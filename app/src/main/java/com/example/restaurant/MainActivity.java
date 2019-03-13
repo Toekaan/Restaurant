@@ -2,6 +2,7 @@ package com.example.restaurant;
 
 import android.content.Intent;
 import android.net.sip.SipSession;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,12 +46,22 @@ public class MainActivity extends AppCompatActivity implements CategoriesRequest
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Log.d("WHY NO", "please");
             Intent intent = new Intent(MainActivity.this, MenuActivity.class);
             String clickedCat = (String) parent.getItemAtPosition(position);
-            Log.d("REALLY OwO?", clickedCat);
             intent.putExtra("category", clickedCat);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
     }
 }
