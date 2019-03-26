@@ -22,11 +22,11 @@ public class MainActivity extends AppCompatActivity implements CategoriesRequest
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // make request to server
         CategoriesRequest x = new CategoriesRequest(this);
         x.getCategories(this);
         Toast.makeText(this, "Started", Toast.LENGTH_SHORT).show();
-        Log.d("Works", "we here");
-
     }
 
     @Override
@@ -40,10 +40,14 @@ public class MainActivity extends AppCompatActivity implements CategoriesRequest
 
     @Override
     public void gotCategoriesError(String message) {
+        // feedback error message
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
+    /** Click listener which listens to specific category clicked */
     private class CatClickListener implements AdapterView.OnItemClickListener {
 
+        // send user off to activity corresponding with the category clicked
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent(MainActivity.this, MenuActivity.class);
@@ -56,12 +60,10 @@ public class MainActivity extends AppCompatActivity implements CategoriesRequest
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
-
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-
     }
 }

@@ -33,7 +33,6 @@ public class MenuActivity extends AppCompatActivity implements MenuRequest.Callb
 
     @Override
     public void gotMenuRequest(ArrayList<MenuItem> menus) {
-        Log.d("It got here!", "Really it did." + menus.size());
         MenuAdapter menuAdapter = new MenuAdapter(this, R.layout.menu_item, menus);
         ListView listView = findViewById(R.id.menuList);
         listView.setAdapter(menuAdapter);
@@ -42,6 +41,7 @@ public class MenuActivity extends AppCompatActivity implements MenuRequest.Callb
 
     @Override
     public void gotMenuError(String message) {
+        // feedback error message to user
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
@@ -50,17 +50,11 @@ public class MenuActivity extends AppCompatActivity implements MenuRequest.Callb
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent(MenuActivity.this, MenuItemActivity.class);
+
+            // check which menu was clicked
             MenuItem menuClicked = (MenuItem) parent.getAdapter().getItem(position);
 
-            /*TextView titleView = view.findViewById(R.id.itemTitle);
-            String title = (String) titleView.getText();
-            intent.putExtra("title", title);
-            TextView priceView = view.findViewById(R.id.itemPrice);
-            String price = priceView.getText();
-            intent.putExtra("price", price);*/
-            //ImageView imageV = view.findViewById(R.id.itemImage);
-            //imageV.get
-
+            // send user off to new activity
             intent.putExtra("menu", menuClicked);
             startActivity(intent);
         }

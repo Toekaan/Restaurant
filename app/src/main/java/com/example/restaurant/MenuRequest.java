@@ -49,6 +49,7 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
 
     @Override
     public void onResponse(JSONObject response) {
+        // list to be returned with all items in it
         ArrayList<MenuItem> menuList = new ArrayList<>();
         // fail safe for JSON
         try {
@@ -61,8 +62,6 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
                 // prepare temporary data holder
                 JSONObject temp = items.getJSONObject(i);
 
-
-
                 // only get items in specified category
                 if (temp.getString("category").equals(category)) {
                     Log.d("MENU REQUEST CATEGORY LOOP:", temp.getString("category"));
@@ -73,25 +72,6 @@ public class MenuRequest implements Response.Listener<JSONObject>, Response.Erro
                     item.setPrice(temp.getLong("price"));
                     menuList.add(item);
                 }
-
-
-                // extract correct data from JSONarray
-                /*String category = temp.getString(0);
-                String description = temp.getString(1);
-                float price = (float) temp.getLong(2);
-                String url = temp.getString(3);
-                int id = temp.getInt(4);
-                String name = temp.getString(5);*/
-
-                // put data into Menu item
-                /*item.setCategory(temp.getString("category"));
-                item.setDescription(temp.getString("description"));
-                item.setImageUrl(temp.getString("image_url"));
-                item.setName(temp.getString("name"));
-                item.setPrice(temp.getLong("price"));*/
-
-                // add menu item to list
-
             }
         }
         catch (JSONException e) {

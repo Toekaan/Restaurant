@@ -59,6 +59,5 @@ public class CategoriesRequest implements Response.Listener<JSONObject>, Respons
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 }
